@@ -9,7 +9,7 @@ from nio.common.signal.base import Signal
 
 
 class YouTubeSignal(Signal):
-    def __init(self, data):
+    def __init__(self, data):
         for k in data:
             setattr(self, k, data[k])
 
