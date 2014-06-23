@@ -18,7 +18,8 @@ class YouTubeSignal(Signal):
 class YouTube(RESTPolling):
     
     URL_FORMAT = ("https://www.googleapis.com/youtube/v3/"
-                  "search?order=date&part=snippet&q={0}&maxResults={1}&key={2}")
+                  "search?order=date&part=snippet&q={0}&"
+                  "&type=video&maxResults={1}&key={2}")
 
     dev_key = StringProperty(default='')
     lookback = TimeDeltaProperty()
