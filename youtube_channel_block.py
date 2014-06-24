@@ -11,8 +11,6 @@ class YouTubeChannel(YouTube):
                   "type=video&maxResults={0}&channelId={1}&"
                   "key={2}")
 
-    channel_id = StringProperty(default='')
-
     def _prepare_url(self, paging=False):
         headers = {"Content-Type": "application/json"}
         if self.etag is not None:
@@ -22,7 +20,7 @@ class YouTubeChannel(YouTube):
 
         self.url = self.URL_FORMAT.format(
             self.limit,
-            self.channel_id,
+            self.current_query,
             self.dev_key
         )
         if paging:
