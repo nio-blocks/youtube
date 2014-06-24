@@ -7,9 +7,9 @@ from nio.metadata.properties.string import StringProperty
 class YouTubeChannel(YouTube):
     
     URL_FORMAT = ("https://www.googleapis.com/youtube/v3/"
-                  "search?order=date&part=snippet&q={0}&"
-                  "type=video&maxResults={1}&channelId={2}&"
-                  "key={3}")
+                  "search?order=date&part=snippet&"
+                  "type=video&maxResults={0}&channelId={1}&"
+                  "key={2}")
 
     channel_id = StringProperty(default='')
 
@@ -21,7 +21,6 @@ class YouTubeChannel(YouTube):
             headers['If-Modified-Since'] = self._modified
 
         self.url = self.URL_FORMAT.format(
-            self.current_query,
             self.limit,
             self.channel_id,
             self.dev_key
