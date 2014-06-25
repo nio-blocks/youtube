@@ -7,7 +7,6 @@ There are two YouTube blocks. The basic YouTube block searches for all videos wi
 -   [YouTubeChannel](https://github.com/nio-blocks/youtube#youtubechannel)
 
 ***
-***
 
 YouTube
 ==============
@@ -44,10 +43,7 @@ Creates a new signal for each Video. Every field on the Video will become a sign
 -   snippet['thumbnails']['high']['url']
 -   snippet['publishedAt']
 
-
 ***
-***
-
 
 YouTubeChannel
 ==============
