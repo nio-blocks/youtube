@@ -3,12 +3,12 @@ YouTube Blocks
 
 There are two YouTube blocks. The basic YouTube block searches for all videos with a given string of words. The YouTubeChannel block will search only the specified channels and will return all videos on that channel.
 
--   [YouTube](https://github.com/nio-blocks/youtube#youtube)
+-   [YouTubeSearch](https://github.com/nio-blocks/youtube#youtubesearch)
 -   [YouTubeChannel](https://github.com/nio-blocks/youtube#youtubechannel)
 
 ***
 
-YouTube
+YouTubeSearch
 ==============
 
 Create a signal for each new video post for a given query. Official documentation [here](https://developers.google.com/youtube/v3/docs/search).
@@ -17,6 +17,7 @@ Properties
 --------------
 
 -   **queries**: List of queries to search for.
+-   **exclude**: List of terms to exclude from results.
 -   **dev_key**: API credentials.
 -   **polling_interval**: How often API is polled.
 -   **retry_interval**: When a url request fails, how long to wait before attempting to try again.
