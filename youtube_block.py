@@ -31,7 +31,7 @@ class YouTube(RESTPolling):
             return [], paging
 
         resp = resp.json()
-        fresh_posts = posts = [i['snippet'] for i in resp.get('items', [])]
+        fresh_posts = posts = resp.get('items', [])
         self._page_token = resp.get(self._paging_field)
         self._logger.debug("YouTube response contains %d posts" % len(posts))
 
@@ -44,3 +44,15 @@ class YouTube(RESTPolling):
         self._logger.debug("Found %d fresh posts" % len(signals))
 
         return signals, paging
+
+    def created_epoch(self, post):
+        """ Overriden from base class.
+
+        Args:
+            post (dict): YouTube post.
+        Returns:
+            seconds (int): publishedAt in seconds since epoch.
+
+        """
+        dt = self._parse_date(post.get('snippet', {}).get(self._created_field, ''))
+        return self._unix_time(dt)
