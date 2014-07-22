@@ -13,9 +13,9 @@ class YouTubeSignal(Signal):
 
 class YouTube(RESTPolling):
 
-    dev_key = StringProperty(default='')
-    lookback = TimeDeltaProperty()
-    limit = IntProperty(default=20)
+    dev_key = StringProperty(default='', title='Developer Key')
+    lookback = TimeDeltaProperty(title='Lookback Period')
+    limit = IntProperty(default=20, title='Limit')
 
     def __init__(self):
         super().__init__()
