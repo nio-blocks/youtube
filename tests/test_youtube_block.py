@@ -3,7 +3,7 @@ from requests import Response
 from datetime import datetime, timedelta
 from youtube.youtube_block import YouTube
 from nio.util.support.block_test_case import NIOBlockTestCase
-from nio.modules.threading.imports import Event
+from nio.modules.threading import Event
 
 
 class YTTestBlk(YouTube):
