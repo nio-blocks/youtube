@@ -49,7 +49,9 @@ Creates a new signal for each Video. Every field on the Video will become a sign
 YouTubeChannel
 ==============
 
-Create a signal for each new video post, given a channel ID. Official documentation [here](https://developers.google.com/youtube/v3/docs/search).
+Create a signal for each new video post, given a channel ID. When you view the source code of a channel page on YouTube, the channel ID is found by searching for "channelId".
+
+Official documentation [here](https://developers.google.com/youtube/v3/docs/search).
 
 Properties
 --------------
