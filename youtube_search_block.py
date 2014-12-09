@@ -28,8 +28,9 @@ class YouTubeSearch(YouTube):
         if len(self.exclude) > 0:
             excl_str = ' -'.join(self.exclude)
             query_str = ' -'.join([query_str, excl_str])
-        self.queries = [query_str]
-        self._n_queries = 1
+        if len(query_str):
+            self.queries = [query_str]
+            self._n_queries = 1
 
     def _prepare_url(self, paging=False):
         headers = {"Content-Type": "application/json"}
