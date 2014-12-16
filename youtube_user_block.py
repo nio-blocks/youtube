@@ -23,13 +23,14 @@ class YouTubeUser(YouTubeChannel):
         response = response.json()
         if response.get('error') is not None:
             self._logger.error(
-                "YouTube channel list request failed: {}: {}".format(
+                "YouTube channel list request failed: {}, reasons: {}".format(
+                    response['error']['code'],
                     [e['reason'] for e in response['error']['errors']]
                 )
             )
-            json().get('items')[0].get('id')
+            return None
         channels = response.get('items')
-        return channels[0].get('id') if len(channels) == 1 else None
+        return channels[0].get('id') if len(channels) > 0 else None
 
     def _update_internal_data(self):
         self._n_queries = len(self.queries)
