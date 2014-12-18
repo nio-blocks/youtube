@@ -24,13 +24,29 @@ class YouTubeSearch(YouTube):
         query support, avoiding unnecessary HTTP requests.
 
         """
+
+        self.queries = self._quote_multi_word_queries(self.queries)
         query_str = '|'.join(self.queries)
+
         if len(self.exclude) > 0:
-            excl_str = ' -'.join(self.exclude)
-            query_str = ' -'.join([query_str, excl_str])
+            self.exclude = self._quote_multi_word_queries(self.exclude)
+            query_str += ' -' + ' -'.join(self.exclude)
+
         if len(query_str):
             self.queries = [query_str]
             self._n_queries = 1
+
+    def _quote_multi_word_queries(self, queries):
+        single_word = [q for q in queries if len(q.split(' ')) == 1]
+
+        # quote the multi-word queries so that whitespace is not treated
+        # as a boolean AND of low precedence.
+        # NOTA BENE: Neither the treatment of whitespace nor quotation is
+        # documented by Google. This functionality could change at ANY TIME
+        multi_word = ['"{}"'.format(q) for q in queries \
+                      if len(q.split(' ')) > 1]
+
+        return single_word + multi_word
 
     def _prepare_url(self, paging=False):
         headers = {"Content-Type": "application/json"}
