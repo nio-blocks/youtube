@@ -1,6 +1,8 @@
 from .http_blocks.rest.rest_block import RESTPolling
 from nio.metadata.properties.string import StringProperty
 from nio.metadata.properties.timedelta import TimeDeltaProperty
+from nio.common.signal.status import BlockStatusSignal
+from nio.common.block.controller import BlockStatus
 from nio.metadata.properties.int import IntProperty
 from nio.common.signal.base import Signal
 
@@ -57,3 +59,31 @@ class YouTube(RESTPolling):
         """
         dt = self._parse_date(post.get('snippet', {}).get(self._created_field, ''))
         return self._unix_time(dt)
+
+    def _validate_response(self, resp):
+
+        # Unauthorized errors come back as 400 with a reason in the response
+        # body, so let's check for that and log an Invalid Creds error.
+        try:
+            error = resp.json().get('error')
+            errors = error.get('errors') if error is not None else []
+            if resp.status_code == 400 and \
+               'keyInvalid' in [err.get('reason') for err in errors]:
+                status_signal = BlockStatusSignal(
+                    BlockStatus.error, 'Invalid Credentials')
+
+                # Leaving source for backwards compatibility
+                # In the future, you will know that a status signal is a block
+                # status signal when it contains service_name and name
+                #
+                # TODO: Remove when source gets added to status signals in nio
+                setattr(status_signal, 'source', 'Block')
+
+                self.notify_management_signal(status_signal)
+                return False
+        except:
+            pass
+
+        # Otherwise, just do the normal response validation
+        return super()._validate_response(resp)
+            
