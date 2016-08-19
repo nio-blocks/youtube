@@ -1,10 +1,10 @@
 from .http_blocks.rest.rest_block import RESTPolling
-from nio.metadata.properties.string import StringProperty
-from nio.metadata.properties.timedelta import TimeDeltaProperty
-from nio.common.signal.status import BlockStatusSignal
-from nio.common.block.controller import BlockStatus
-from nio.metadata.properties.int import IntProperty
-from nio.common.signal.base import Signal
+from nio.properties.string import StringProperty
+from nio.properties.timedelta import TimeDeltaProperty
+from nio.signal.status import BlockStatusSignal
+from nio.util.runner import RunnerStatus
+from nio.properties.int import IntProperty
+from nio.signal.base import Signal
 
 
 class YouTubeSignal(Signal):
@@ -17,7 +17,7 @@ class YouTubeSignal(Signal):
 class YouTube(RESTPolling):
 
     dev_key = StringProperty(default='', title='Developer Key')
-    lookback = TimeDeltaProperty(title='Lookback Period')
+    lookback = TimeDeltaProperty(default={'seconds':300}, title='Lookback Period')
     limit = IntProperty(default=20, title='Limit')
 
     def __init__(self):
@@ -36,7 +36,7 @@ class YouTube(RESTPolling):
         resp = resp.json()
         fresh_posts = posts = resp.get('items', [])
         self._page_token = resp.get(self._paging_field)
-        self._logger.debug("YouTube response contains %d posts" % len(posts))
+        self.logger.debug("YouTube response contains %d posts" % len(posts))
 
         if len(posts) > 0:
             self.update_freshness(posts)
@@ -44,7 +44,7 @@ class YouTube(RESTPolling):
             paging = len(fresh_posts) == len(posts)
 
         signals = [YouTubeSignal(p) for p in fresh_posts]
-        self._logger.debug("Found %d fresh posts" % len(signals))
+        self.logger.debug("Found %d fresh posts" % len(signals))
 
         return signals, paging
 
@@ -86,4 +86,3 @@ class YouTube(RESTPolling):
 
         # Otherwise, just do the normal response validation
         return super()._validate_response(resp)
-            
