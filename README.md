@@ -37,12 +37,24 @@ Output
 ---------
 Creates a new signal for each Video. Every field on the Video will become a signal attribute. The following is a list of commonly include attributes, but note that not all will be included on every signal:
 
--   id['videoId']
--   snippet['channelTitle']
--   snippet['title']
--   snippet['description']
--   snippet['thumbnails']['high']['url']
--   snippet['publishedAt']
+```
+{
+  id: {
+    videoId: int
+  },
+  snippet: {
+    channelTitle: string,
+    title: string,
+    description: string,
+    thumbnails: {
+      high: {
+        url: string
+      }
+    },
+    publishedAt: datetime
+  }
+}
+```
 
 ***
 
@@ -76,12 +88,24 @@ Output
 ---------
 Creates a new signal for each Video. Every field on the Video will become a signal attribute. The following is a list of commonly include attributes, but note that not all will be included on every signal:
 
--   id['videoId']
--   snippet['channelTitle']
--   snippet['title']
--   snippet['description']
--   snippet['thumbnails']['high']['url']
--   snippet['publishedAt']
+```
+{
+  id: {
+    videoId: int
+  },
+  snippet: {
+    channelTitle: string,
+    title: string,
+    description: string,
+    thumbnails: {
+      high: {
+        url: string
+      }
+    },
+    publishedAt: datetime
+  }
+}
+```
 
 ***
 
@@ -117,9 +141,21 @@ Output
 ---------
 Creates a new signal for each Video. Every field on the Video will become a signal attribute. The following is a list of commonly include attributes, but note that not all will be included on every signal:
 
--   id['videoId']
--   snippet['channelTitle']
--   snippet['title']
--   snippet['description']
--   snippet['thumbnails']['high']['url']
--   snippet['publishedAt']
+```
+{
+  id: {
+    videoId: int
+  },
+  snippet: {
+    channelTitle: string,
+    title: string,
+    description: string,
+    thumbnails: {
+      high: {
+        url: string
+      }
+    },
+    publishedAt: datetime
+  }
+}
+```
