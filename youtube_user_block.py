@@ -1,10 +1,10 @@
 from datetime import datetime
 import requests
-from nio.common.discovery import Discoverable, DiscoverableType
+from nio.util.discovery import discoverable
 from .youtube_channel_block import YouTubeChannel
+from nio.block.mixins.persistence.persistence import Persistence
 
-
-@Discoverable(DiscoverableType.block)
+@discoverable
 class YouTubeUser(YouTubeChannel):
 
     USER_CHANNEL_URL = ("https://www.googleapis.com/youtube/v3/"
@@ -18,17 +18,27 @@ class YouTubeUser(YouTubeChannel):
 
     def stop(self):
         super().stop()
-        self.persistence.save()
+
+    def persisted_values(self):
+        """ Return a list containing the values to be persisted.
+        This function should be overriden in a Block that wishes to use
+        persistence. Return a list of the names of the instance level variables
+        to save.
+        For example, if your block class has an instance level attribute called
+        `_values` and you wish to save it, you would return this list:
+            ["_values"]
+        """
+        return ["_id"]
 
     def _get_user_channel_id(self, username):
-        _id = self.persistence.load(username)
+        _id = username
         if _id is None:
             headers = {"Content-Type": "application/json"}
-            url = self.USER_CHANNEL_URL.format(username, self.dev_key)
+            url = self.USER_CHANNEL_URL.format(username, self.dev_key())
             response = requests.get(url, headers=headers, auth=self._auth)
             response = response.json()
             if response.get('error') is not None:
-                self._logger.error(
+                self.logger.error(
                     "YouTube channel list request failed: {}, reasons: {}".format(
                         response['error']['code'],
                         [e['reason'] for e in response['error']['errors']]
@@ -38,7 +48,6 @@ class YouTubeUser(YouTubeChannel):
             else:
                 channels = response.get('items')
                 _id = channels[0].get('id') if len(channels) > 0 else None
-                self.persistence.store(username, _id)
         return _id
 
     def _update_internal_data(self):

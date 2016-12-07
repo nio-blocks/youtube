@@ -1,10 +1,10 @@
 from datetime import datetime
-from nio.common.discovery import Discoverable, DiscoverableType
+from nio.util.discovery import discoverable
 from .youtube_block import YouTube
-from nio.metadata.properties.list import ListProperty
+from nio.properties.list import ListProperty
 
 
-@Discoverable(DiscoverableType.block)
+@discoverable
 class YouTubeSearch(YouTube):
 
     URL_FORMAT = ("https://www.googleapis.com/youtube/v3/"
@@ -16,7 +16,7 @@ class YouTubeSearch(YouTube):
     def configure(self, context):
         super().configure(context)
         self._smash_queries()
-        lb = self._unix_time(datetime.utcnow() - self.lookback)
+        lb = self._unix_time(datetime.utcnow() - self.lookback())
         self._freshest = [lb] * self._n_queries
 
     def _smash_queries(self):
@@ -57,8 +57,8 @@ class YouTubeSearch(YouTube):
 
         self.url = self.URL_FORMAT.format(
             self.current_query,
-            self.limit,
-            self.dev_key
+            self.limit(),
+            self.dev_key()
         )
         if paging:
             self.url = "%s&pageToken=%s" % (self.url, self._page_token)
