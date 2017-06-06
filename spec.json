@@ -1,0 +1,98 @@
+{
+  "nio/YouTubeChannel": {
+    "Version": "1.0.0",
+    "Category": "WebService",
+    "Properties": {
+      "polling_interval": {
+        "description": "How often API is polled."
+      },
+      "limit": {
+        "description": "Number of posts to come back on each url request."
+      },
+      "retry_interval": {
+        "description": "When a url request fails, how long to wait before attempting to try again."
+      },
+      "retry_limit": {
+        "description": "When a url request fails, number of times to attempt a retry before giving up."
+      },
+      "queries": {
+        "description": "List of channel IDs to query."
+      },
+      "dev_key": {
+        "description": "API credentials."
+      },
+      "lookback": {
+        "description": "On block start, look back this amount of time to grab old posts."
+      }
+    },
+    "Commands": {},
+    "Description": "Create a signal for each new video post, given a channel ID. When you view the source code of a channel page on YouTube, the channel ID is found by searching for \"channelId\".\nOfficial documentation [here](https://developers.google.com/youtube/v3/docs/search).",
+    "Output": "Creates a new signal for each Video. Every field on the Video will become a signal attribute. The following is a list of commonly include attributes, but note that not all will be included on every signal:\n```\n{\nid: {\nvideoId: int\n},\nsnippet: {\nchannelTitle: string,\ntitle: string,\ndescription: string,\nthumbnails: {\nhigh: {\nurl: string\n}\n},\npublishedAt: datetime\n}\n}\n```",
+    "Input": "None"
+  },
+  "nio/YouTubeUser": {
+    "Version": "1.0.0",
+    "Category": "WebService",
+    "Properties": {
+      "polling_interval": {
+        "description": "How often API is polled."
+      },
+      "limit": {
+        "description": "Number of posts to come back on each url request."
+      },
+      "retry_interval": {
+        "description": "When a url request fails, how long to wait before attempting to try again."
+      },
+      "retry_limit": {
+        "description": "When a url request fails, number of times to attempt a retry before giving up."
+      },
+      "queries": {
+        "description": "List of user channels to query."
+      },
+      "dev_key": {
+        "description": "API credentials."
+      },
+      "lookback": {
+        "description": "On block start, look back this amount of time to grab old posts."
+      }
+    },
+    "Commands": {},
+    "Description": "Create a signal for each new video post, given a user name. When you view the source code of a channel page on YouTube, the channel ID is found by searching for \"channelId\".\nDiffers from **YouTubeChannel** in that it is configured with a list of usernames (rather than channel IDs), which are preprocessed to produce a list of channel IDs to be used in subsequent YouTube Search requests.\nOfficial documentation [here](https://developers.google.com/youtube/v3/docs/search).",
+    "Output": "Creates a new signal for each Video. Every field on the Video will become a signal attribute. The following is a list of commonly include attributes, but note that not all will be included on every signal:\n```\n{\nid: {\nvideoId: int\n},\nsnippet: {\nchannelTitle: string,\ntitle: string,\ndescription: string,\nthumbnails: {\nhigh: {\nurl: string\n}\n},\npublishedAt: datetime\n}\n}\n```",
+    "Input": "None"
+  },
+  "nio/YouTubeSearch": {
+    "Version": "1.0.0",
+    "Category": "WebService",
+    "Properties": {
+      "retry_limit": {
+        "description": "When a url request fails, number of times to attempt a retry before giving up."
+      },
+      "polling_interval": {
+        "description": "How often API is polled."
+      },
+      "limit": {
+        "description": "Number of posts to come back on each url request."
+      },
+      "retry_interval": {
+        "description": "When a url request fails, how long to wait before attempting to try again."
+      },
+      "exclude": {
+        "description": "List of terms to exclude from results."
+      },
+      "queries": {
+        "description": "List of queries to search for."
+      },
+      "dev_key": {
+        "description": "API credentials."
+      },
+      "lookback": {
+        "description": "On block start, look back this amount of time to grab old posts."
+      }
+    },
+    "Commands": {},
+    "Description": "Create a signal for each new video post for a given query. Official documentation [here](https://developers.google.com/youtube/v3/docs/search).",
+    "Input": "None",
+    "Output": "Creates a new signal for each Video. Every field on the Video will become a signal attribute. The following is a list of commonly include attributes, but note that not all will be included on every signal:\n```\n{\nid: {\nvideoId: int\n},\nsnippet: {\nchannelTitle: string,\ntitle: string,\ndescription: string,\nthumbnails: {\nhigh: {\nurl: string\n}\n},\npublishedAt: datetime\n}\n}\n```"
+  }
+}

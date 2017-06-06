@@ -1,0 +1,17 @@
+{
+  "nio/YouTubeChannel": {
+    "Version": "1.0.0",
+    "Language": "Python",
+    "Reference": "github.com/nio-blocks/youtube.git@v1.0.0"
+  },
+  "nio/YouTubeUser": {
+    "Version": "1.0.0",
+    "Language": "Python",
+    "Reference": "github.com/nio-blocks/youtube.git@v1.0.0"
+  },
+  "nio/YouTubeSearch": {
+    "Version": "1.0.0",
+    "Language": "Python",
+    "Reference": "github.com/nio-blocks/youtube.git@v1.0.0"
+  }
+}

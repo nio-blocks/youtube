@@ -1,12 +1,10 @@
-YouTube Blocks
-=============
+# YouTube Blocks
 
 There are two YouTube blocks. The basic YouTube block searches for all videos with a given string of words. The YouTubeChannel block will search only the specified channels and will return all videos on that channel.
 
 -   [YouTubeSearch](https://github.com/nio-blocks/youtube#youtubesearch)
 -   [YouTubeChannel](https://github.com/nio-blocks/youtube#youtubechannel)
 
-***
 
 YouTubeSearch
 ==============
