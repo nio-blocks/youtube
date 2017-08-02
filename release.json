@@ -1,17 +1,17 @@
 {
   "nio/YouTubeChannel": {
-    "Version": "1.0.0",
-    "Language": "Python",
-    "Reference": "github.com/nio-blocks/youtube.git@v1.0.0"
-  },
-  "nio/YouTubeUser": {
-    "Version": "1.0.0",
-    "Language": "Python",
-    "Reference": "github.com/nio-blocks/youtube.git@v1.0.0"
+    "language": "Python",
+    "version": "0.0.1",
+    "reference": "github.com/nio-blocks/youtube.git@v0.0.1"
   },
   "nio/YouTubeSearch": {
-    "Version": "1.0.0",
-    "Language": "Python",
-    "Reference": "github.com/nio-blocks/youtube.git@v1.0.0"
+    "language": "Python",
+    "version": "0.0.1",
+    "reference": "github.com/nio-blocks/youtube.git@v0.0.1"
+  },
+  "nio/YouTubeUser": {
+    "language": "Python",
+    "version": "0.0.1",
+    "reference": "github.com/nio-blocks/youtube.git@v0.0.1"
   }
 }
