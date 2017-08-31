@@ -1,10 +1,14 @@
 from unittest.mock import patch
 from requests import Response
-from ..youtube_block import YouTube
-from nio.testing.block_test_case import NIOBlockTestCase
 from threading import Event
 
+from nio.testing.block_test_case import NIOBlockTestCase
+from nio.util.discovery import not_discoverable
 
+from ..youtube_block import YouTube
+
+
+@not_discoverable
 class YTTestBlk(YouTube):
     def __init__(self, event):
         super().__init__()

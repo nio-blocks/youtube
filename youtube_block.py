@@ -1,10 +1,9 @@
-from .http_blocks.rest.rest_block import RESTPolling
-from nio.properties.string import StringProperty
-from nio.properties.timedelta import TimeDeltaProperty
+from nio.properties import StringProperty, TimeDeltaProperty, IntProperty
 from nio.signal.status import BlockStatusSignal
-from nio.util.runner import RunnerStatus
-from nio.properties.int import IntProperty
 from nio.signal.base import Signal
+from nio.util.discovery import not_discoverable
+
+from .rest_polling.rest_polling_base import RESTPolling
 
 
 class YouTubeSignal(Signal):
@@ -14,10 +13,12 @@ class YouTubeSignal(Signal):
             setattr(self, k, data[k])
 
 
+@not_discoverable
 class YouTube(RESTPolling):
 
     dev_key = StringProperty(default='', title='Developer Key')
-    lookback = TimeDeltaProperty(default={'seconds':300}, title='Lookback Period')
+    lookback = TimeDeltaProperty(
+        default={'seconds': 300}, title='Lookback Period')
     limit = IntProperty(default=20, title='Limit')
 
     def __init__(self):
@@ -57,7 +58,8 @@ class YouTube(RESTPolling):
             seconds (int): publishedAt in seconds since epoch.
 
         """
-        dt = self._parse_date(post.get('snippet', {}).get(self._created_field, ''))
+        dt = self._parse_date(
+            post.get('snippet', {}).get(self._created_field, ''))
         return self._unix_time(dt)
 
     def _validate_response(self, resp):

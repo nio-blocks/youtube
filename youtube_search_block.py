@@ -1,17 +1,20 @@
 from datetime import datetime
-from nio.util.discovery import discoverable
+
+from nio.properties import ListProperty, VersionProperty
+from nio.types import StringType
+
 from .youtube_block import YouTube
-from nio.properties.list import ListProperty
 
 
-@discoverable
 class YouTubeSearch(YouTube):
 
     URL_FORMAT = ("https://www.googleapis.com/youtube/v3/"
                   "search?order=date&part=snippet&q={0}&"
                   "type=video&maxResults={1}&key={2}")
 
-    exclude = ListProperty(str)
+    exclude = ListProperty(
+        list_obj_type=StringType, title="Terms to Exclude", default=[])
+    version = VersionProperty('0.0.1')
 
     def configure(self, context):
         super().configure(context)
@@ -43,7 +46,7 @@ class YouTubeSearch(YouTube):
         # as a boolean AND of low precedence.
         # NOTA BENE: Neither the treatment of whitespace nor quotation is
         # documented by Google. This functionality could change at ANY TIME
-        multi_word = ['"{}"'.format(q) for q in queries \
+        multi_word = ['"{}"'.format(q) for q in queries
                       if len(q.split(' ')) > 1]
 
         return single_word + multi_word

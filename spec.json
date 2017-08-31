@@ -1,26 +1,221 @@
 {
   "nio/YouTubeChannel": {
     "version": "0.0.1",
-    "description": "",
-    "inputs": {},
-    "outputs": {},
-    "properties": {},
+    "description": "Create a signal for each new video post, given a channel ID. When you view the source code of a channel page on YouTube, the channel ID is found by searching for 'channelId'.",
+    "properties": {
+      "dev_key": {
+        "title": "Developer Key",
+        "type": "StringType",
+        "description": "Youtube API credentials.",
+        "default": ""
+      },
+      "include_query": {
+        "title": "Include Query Field",
+        "type": "StringType",
+        "description": "Whether to include queries in request to facebook.",
+        "default": null
+      },
+      "limit": {
+        "title": "Limit",
+        "type": "IntType",
+        "description": "Number of posts to come back on each url request to Facebook.",
+        "default": 20
+      },
+      "lookback": {
+        "title": "Lookback Period",
+        "type": "TimeDeltaType",
+        "description": "On block start, look back this amount of time to grab old posts.",
+        "default": {
+          "seconds": 300
+        }
+      },
+      "polling_interval": {
+        "title": "Polling Interval",
+        "type": "TimeDeltaType",
+        "description": "How often Youtube is polled. When using more than one query. Each query will be polled at a period equal to the *polling interval* times the number of queries.",
+        "default": {
+          "seconds": 20
+        }
+      },
+      "queries": {
+        "title": "Query Strings",
+        "type": "ListType",
+        "description": "Queries to include on request to Youtube",
+        "default": []
+      },
+      "retry_interval": {
+        "title": "Retry Interval",
+        "type": "TimeDeltaType",
+        "description": "When a url request fails, how long to wait before attempting to try again.",
+        "default": {
+          "seconds": 60
+        }
+      },
+      "retry_limit": {
+        "title": "Retry Limit",
+        "type": "IntType",
+        "description": "Number of times to retry on a poll.",
+        "default": 3
+      }
+    },
+    "inputs": {
+      "default": {
+        "description": "Any list of signals."
+      }
+    },
+    "outputs": {
+      "default": {
+        "description": "Creates a new signal for each Video. Every field on the Video will become a signal attribute."
+      }
+    },
     "commands": {}
   },
   "nio/YouTubeSearch": {
     "version": "0.0.1",
-    "description": "",
-    "inputs": {},
-    "outputs": {},
-    "properties": {},
+    "description": "Search Youtube for specified query.",
+    "properties": {
+      "dev_key": {
+        "title": "Developer Key",
+        "type": "StringType",
+        "description": "Youtube API credentials.",
+        "default": ""
+      },
+      "exclude": {
+        "title": "Terms to Exclude",
+        "type": "ListType",
+        "description": "List of terms to exclude from results.",
+        "default": []
+      },
+      "include_query": {
+        "title": "Include Query Field",
+        "type": "StringType",
+        "description": "Whether to include queries in request to facebook.",
+        "default": null
+      },
+      "limit": {
+        "title": "Limit",
+        "type": "IntType",
+        "description": "Number of posts to come back on each url request to Facebook.",
+        "default": 20
+      },
+      "lookback": {
+        "title": "Lookback Period",
+        "type": "TimeDeltaType",
+        "description": "On block start, look back this amount of time to grab old posts.",
+        "default": {
+          "seconds": 300
+        }
+      },
+      "polling_interval": {
+        "title": "Polling Interval",
+        "type": "TimeDeltaType",
+        "description": "How often Youtube is polled. When using more than one query. Each query will be polled at a period equal to the *polling interval* times the number of queries.",
+        "default": {
+          "seconds": 20
+        }
+      },
+      "queries": {
+        "title": "Query Strings",
+        "type": "ListType",
+        "description": "Queries to include on request to Youtube",
+        "default": []
+      },
+      "retry_interval": {
+        "title": "Retry Interval",
+        "type": "TimeDeltaType",
+        "description": "When a url request fails, how long to wait before attempting to try again.",
+        "default": {
+          "seconds": 60
+        }
+      },
+      "retry_limit": {
+        "title": "Retry Limit",
+        "type": "IntType",
+        "description": "Number of times to retry on a poll.",
+        "default": 3
+      }
+    },
+    "inputs": {
+      "default": {
+        "description": "Any list of signals."
+      }
+    },
+    "outputs": {
+      "default": {
+        "description": "Creates a new signal for each Video. Every field on the Video will become a signal attribute."
+      }
+    },
     "commands": {}
   },
   "nio/YouTubeUser": {
     "version": "0.0.1",
-    "description": "",
-    "inputs": {},
-    "outputs": {},
-    "properties": {},
+    "description": "Search Youtube for specified user videos.",
+    "properties": {
+      "dev_key": {
+        "title": "Developer Key",
+        "type": "StringType",
+        "description": "Youtube API credentials.",
+        "default": ""
+      },
+      "include_query": {
+        "title": "Include Query Field",
+        "type": "StringType",
+        "description": "Whether to include queries in request to facebook.",
+        "default": null
+      },
+      "limit": {
+        "title": "Limit",
+        "type": "IntType",
+        "description": "Number of posts to come back on each url request to Facebook.",
+        "default": 20
+      },
+      "lookback": {
+        "title": "Lookback Period",
+        "type": "TimeDeltaType",
+        "description": "On block start, look back this amount of time to grab old posts.",
+        "default": {
+          "seconds": 300
+        }
+      },
+      "polling_interval": {
+        "title": "Polling Interval",
+        "type": "TimeDeltaType",
+        "description": "How often Youtube is polled. When using more than one query. Each query will be polled at a period equal to the *polling interval* times the number of queries.",
+        "default": {
+          "seconds": 20
+        }
+      },
+      "queries": {
+        "title": "Query Strings",
+        "type": "ListType",
+        "description": "Queries to include on request to Youtube",
+        "default": []
+      },
+      "retry_interval": {
+        "title": "Retry Interval",
+        "type": "TimeDeltaType",
+        "description": "When a url request fails, how long to wait before attempting to try again.",
+        "default": {
+          "seconds": 60
+        }
+      },
+      "retry_limit": {
+        "title": "Retry Limit",
+        "type": "IntType",
+        "description": "Number of times to retry on a poll.",
+        "default": 3
+      }
+    },
+    "inputs": {
+      "default": {
+        "description": "Any list of signals."
+      }
+    },
+    "outputs": {
+      "default": {
+        "description": "Creates a new signal for each Video. Every field on the Video will become a signal attribute."
+      }
+    },
     "commands": {}
   }
 }
