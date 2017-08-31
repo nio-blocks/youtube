@@ -1,91 +1,33 @@
-# YouTube Blocks
-
-There are two YouTube blocks. The basic YouTube block searches for all videos with a given string of words. The YouTubeChannel block will search only the specified channels and will return all videos on that channel.
-
--   [YouTubeSearch](https://github.com/nio-blocks/youtube#youtubesearch)
--   [YouTubeChannel](https://github.com/nio-blocks/youtube#youtubechannel)
-
-
-YouTubeSearch
-==============
-
-Create a signal for each new video post for a given query. Official documentation [here](https://developers.google.com/youtube/v3/docs/search).
-
-Properties
---------------
-
--   **queries**: List of queries to search for.
--   **exclude**: List of terms to exclude from results.
--   **dev_key**: API credentials.
--   **polling_interval**: How often API is polled.
--   **retry_interval**: When a url request fails, how long to wait before attempting to try again.
--   **retry_limit**: When a url request fails, number of times to attempt a retry before giving up.
--   **lookback**: On block start, look back this amount of time to grab old posts.
--   **limit**: Number of posts to come back on each url request.
-
-Commands
-----------------
-None
-
-Input
--------
-None
-
-Output
----------
-Creates a new signal for each Video. Every field on the Video will become a signal attribute. The following is a list of commonly include attributes, but note that not all will be included on every signal:
-
-```
-{
-  id: {
-    videoId: int
-  },
-  snippet: {
-    channelTitle: string,
-    title: string,
-    description: string,
-    thumbnails: {
-      high: {
-        url: string
-      }
-    },
-    publishedAt: datetime
-  }
-}
-```
-
-***
-
 YouTubeChannel
 ==============
-
-Create a signal for each new video post, given a channel ID. When you view the source code of a channel page on YouTube, the channel ID is found by searching for "channelId".
-
-Official documentation [here](https://developers.google.com/youtube/v3/docs/search).
+Create a signal for each new video post, given a channel ID. When you view the source code of a channel page on YouTube, the channel ID is found by searching for 'channelId'.
 
 Properties
---------------
+----------
+- **dev_key**: Youtube API credentials.
+- **include_query**: Whether to include queries in request to facebook.
+- **limit**: Number of posts to come back on each url request to Facebook.
+- **lookback**: On block start, look back this amount of time to grab old posts.
+- **polling_interval**: How often Youtube is polled. When using more than one query. Each query will be polled at a period equal to the *polling interval* times the number of queries.
+- **queries**: Queries to include on request to Youtube
+- **retry_interval**: When a url request fails, how long to wait before attempting to try again.
+- **retry_limit**: Number of times to retry on a poll.
 
--   **queries**: List of channel IDs to query.
--   **dev_key**: API credentials.
--   **polling_interval**: How often API is polled.
--   **retry_interval**: When a url request fails, how long to wait before attempting to try again.
--   **retry_limit**: When a url request fails, number of times to attempt a retry before giving up.
--   **lookback**: On block start, look back this amount of time to grab old posts.
--   **limit**: Number of posts to come back on each url request.
+Inputs
+------
+- **default**: Any list of signals.
+
+Outputs
+-------
+- **default**: Creates a new signal for each Video. Every field on the Video will become a signal attribute.
 
 Commands
-----------------
+--------
 None
 
-Input
--------
-None
-
-Output
----------
-Creates a new signal for each Video. Every field on the Video will become a signal attribute. The following is a list of commonly include attributes, but note that not all will be included on every signal:
-
+Output Example
+--------------
+The following is a list of commonly include attributes, but note that not all will be included on every signal:
 ```
 {
   id: {
@@ -105,40 +47,86 @@ Creates a new signal for each Video. Every field on the Video will become a sign
 }
 ```
 
-***
+YouTubeSearch
+=============
+Search Youtube for specified query.
+
+Properties
+----------
+- **dev_key**: Youtube API credentials.
+- **exclude**: List of terms to exclude from results.
+- **include_query**: Whether to include queries in request to facebook.
+- **limit**: Number of posts to come back on each url request to Facebook.
+- **lookback**: On block start, look back this amount of time to grab old posts.
+- **polling_interval**: How often Youtube is polled. When using more than one query. Each query will be polled at a period equal to the *polling interval* times the number of queries.
+- **queries**: Queries to include on request to Youtube
+- **retry_interval**: When a url request fails, how long to wait before attempting to try again.
+- **retry_limit**: Number of times to retry on a poll.
+
+Inputs
+------
+- **default**: Any list of signals.
+
+Outputs
+-------
+- **default**: Creates a new signal for each Video. Every field on the Video will become a signal attribute.
+
+Commands
+--------
+None
+
+Output Example
+--------------
+The following is a list of commonly include attributes, but note that not all will be included on every signal:
+```
+{
+  id: {
+    videoId: int
+  },
+  snippet: {
+    channelTitle: string,
+    title: string,
+    description: string,
+    thumbnails: {
+      high: {
+        url: string
+      }
+    },
+    publishedAt: datetime
+  }
+}
+```
 
 YouTubeUser
-==============
-
-Create a signal for each new video post, given a user name. When you view the source code of a channel page on YouTube, the channel ID is found by searching for "channelId".
-
-Differs from **YouTubeChannel** in that it is configured with a list of usernames (rather than channel IDs), which are preprocessed to produce a list of channel IDs to be used in subsequent YouTube Search requests.
-
-Official documentation [here](https://developers.google.com/youtube/v3/docs/search).
+===========
+Search Youtube for specified user videos.
 
 Properties
---------------
+----------
+- **dev_key**: Youtube API credentials.
+- **include_query**: Whether to include queries in request to facebook.
+- **limit**: Number of posts to come back on each url request to Facebook.
+- **lookback**: On block start, look back this amount of time to grab old posts.
+- **polling_interval**: How often Youtube is polled. When using more than one query. Each query will be polled at a period equal to the *polling interval* times the number of queries.
+- **queries**: Queries to include on request to Youtube
+- **retry_interval**: When a url request fails, how long to wait before attempting to try again.
+- **retry_limit**: Number of times to retry on a poll.
 
--   **queries**: List of user channels to query.
--   **dev_key**: API credentials.
--   **polling_interval**: How often API is polled.
--   **retry_interval**: When a url request fails, how long to wait before attempting to try again.
--   **retry_limit**: When a url request fails, number of times to attempt a retry before giving up.
--   **lookback**: On block start, look back this amount of time to grab old posts.
--   **limit**: Number of posts to come back on each url request.
+Inputs
+------
+- **default**: Any list of signals.
+
+Outputs
+-------
+- **default**: Creates a new signal for each Video. Every field on the Video will become a signal attribute.
 
 Commands
-----------------
+--------
 None
 
-Input
--------
-None
-
-Output
----------
-Creates a new signal for each Video. Every field on the Video will become a signal attribute. The following is a list of commonly include attributes, but note that not all will be included on every signal:
-
+Output Example
+--------------
+The following is a list of commonly include attributes, but note that not all will be included on every signal:
 ```
 {
   id: {
@@ -157,3 +145,4 @@ Creates a new signal for each Video. Every field on the Video will become a sign
   }
 }
 ```
+

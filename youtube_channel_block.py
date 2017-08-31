@@ -1,15 +1,17 @@
 from datetime import datetime
-from nio.util.discovery import discoverable
+
+from nio.properties import VersionProperty
+
 from .youtube_block import YouTube
 
 
-@discoverable
 class YouTubeChannel(YouTube):
 
     URL_FORMAT = ("https://www.googleapis.com/youtube/v3/"
                   "search?order=date&part=snippet&"
                   "type=video&maxResults={0}&channelId={1}&"
                   "key={2}")
+    version = VersionProperty('0.0.1')
 
     def configure(self, context):
         super().configure(context)

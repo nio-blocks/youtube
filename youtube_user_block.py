@@ -1,14 +1,15 @@
-from datetime import datetime
 import requests
-from nio.util.discovery import discoverable
-from .youtube_channel_block import YouTubeChannel
-from nio.block.mixins.persistence.persistence import Persistence
 
-@discoverable
+from nio.properties import VersionProperty
+
+from .youtube_channel_block import YouTubeChannel
+
+
 class YouTubeUser(YouTubeChannel):
 
     USER_CHANNEL_URL = ("https://www.googleapis.com/youtube/v3/"
                         "channels?part=id&forUsername={}&key={}")
+    version = VersionProperty('0.0.1')
 
     def configure(self, context):
         super().configure(context)
@@ -39,7 +40,8 @@ class YouTubeUser(YouTubeChannel):
             response = response.json()
             if response.get('error') is not None:
                 self.logger.error(
-                    "YouTube channel list request failed: {}, reasons: {}".format(
+                    "YouTube channel list request failed: {}, "
+                    "reasons: {}".format(
                         response['error']['code'],
                         [e['reason'] for e in response['error']['errors']]
                     )
