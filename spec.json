@@ -71,7 +71,7 @@
     "commands": {}
   },
   "nio/YouTubeSearch": {
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Search Youtube for specified query.",
     "properties": {
       "dev_key": {

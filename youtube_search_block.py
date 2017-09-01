@@ -14,7 +14,7 @@ class YouTubeSearch(YouTube):
 
     exclude = ListProperty(
         list_obj_type=StringType, title="Terms to Exclude", default=[])
-    version = VersionProperty('0.0.1')
+    version = VersionProperty("1.0.0")
 
     def configure(self, context):
         super().configure(context)
