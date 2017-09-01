@@ -12,6 +12,6 @@
   "nio/YouTubeUser": {
     "language": "Python",
     "url": "git://github.com/nio-blocks/youtube.git",
-    "version": "0.0.1"
+    "version": "1.0.0"
   }
 }

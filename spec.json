@@ -148,7 +148,7 @@
     "commands": {}
   },
   "nio/YouTubeUser": {
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Search Youtube for specified user videos.",
     "properties": {
       "dev_key": {

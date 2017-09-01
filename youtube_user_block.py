@@ -9,7 +9,7 @@ class YouTubeUser(YouTubeChannel):
 
     USER_CHANNEL_URL = ("https://www.googleapis.com/youtube/v3/"
                         "channels?part=id&forUsername={}&key={}")
-    version = VersionProperty('0.0.1')
+    version = VersionProperty("1.0.0")
 
     def configure(self, context):
         super().configure(context)
