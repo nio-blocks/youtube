@@ -1,6 +1,6 @@
 {
   "nio/YouTubeChannel": {
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Create a signal for each new video post, given a channel ID. When you view the source code of a channel page on YouTube, the channel ID is found by searching for 'channelId'.",
     "properties": {
       "dev_key": {
