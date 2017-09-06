@@ -2,6 +2,9 @@
   "nio/YouTubeChannel": {
     "version": "1.0.0",
     "description": "Create a signal for each new video post, given a channel ID. When you view the source code of a channel page on YouTube, the channel ID is found by searching for 'channelId'.",
+    "categories": [
+      "Social Media"
+    ],
     "properties": {
       "dev_key": {
         "title": "Developer Key",
@@ -73,6 +76,9 @@
   "nio/YouTubeSearch": {
     "version": "1.0.0",
     "description": "Search Youtube for specified query.",
+    "categories": [
+      "Social Media"
+    ],
     "properties": {
       "dev_key": {
         "title": "Developer Key",
@@ -150,6 +156,9 @@
   "nio/YouTubeUser": {
     "version": "1.0.0",
     "description": "Search Youtube for specified user videos.",
+    "categories": [
+      "Social Media"
+    ],
     "properties": {
       "dev_key": {
         "title": "Developer Key",
