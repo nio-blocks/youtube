@@ -154,7 +154,7 @@
     "commands": {}
   },
   "nio/YouTubeUser": {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Search Youtube for specified user videos.",
     "categories": [
       "Social Media"
