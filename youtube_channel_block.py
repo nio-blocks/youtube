@@ -11,7 +11,7 @@ class YouTubeChannel(YouTube):
                   "search?order=date&part=snippet&"
                   "type=video&maxResults={0}&channelId={1}&"
                   "key={2}")
-    version = VersionProperty("1.0.0")
+    version = VersionProperty("1.0.1")
 
     def configure(self, context):
         super().configure(context)
